@@ -6,23 +6,22 @@
 import microbit
 import math
 
+def calc_tilt_x(x, z):
+    Theta_X = math.atan2(x, z)
+    X = Theta_X * 180 / math.pi
+    # microbit.display.scroll(X_deg)
+    return (X)
+
+def calc_tilt_y(y, z):
+    Theta_Y = math.atan2(y, z)
+    Y = Theta_Y * 180 / math.pi
+    # microbit.display.scroll(Y_deg)
+    return (Y)
+
 while True:
     x = microbit.accelerometer.get_x()
     y = microbit.accelerometer.get_y()
     z = microbit.accelerometer.get_z()
-
-    def calc_tilt_x(x, z):
-        Theta_X = math.atan2(x, z)
-        X = Theta_X * 180 / math.pi
-        # microbit.display.scroll(X_deg)
-        return (X)
-
-    def calc_tilt_y(y, z):
-        Theta_Y = math.atan2(y, z)
-        Y = Theta_Y * 180 / math.pi
-        # microbit.display.scroll(Y_deg)
-        return (Y)
-
     Y_deg = calc_tilt_y(y, z)
     X_deg = calc_tilt_x(x, z)
 
@@ -59,4 +58,3 @@ while True:
     microbit.display.set_pixel(X_location(X_deg), Y_location(Y_deg), 9)
     microbit.sleep(100)
     microbit.display.clear()
-
